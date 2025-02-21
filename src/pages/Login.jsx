@@ -3,9 +3,9 @@
 const Login = () => {
   return (
     <div>
-      
+      <p>Loin Page...</p>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

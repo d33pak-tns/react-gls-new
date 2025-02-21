@@ -2,22 +2,41 @@
 
 // import React from "react";
 // import { useEffect } from "react";
+import { useState } from "react";
 
-const TodoFormNew = ({
-  todos,
-  title,
-  description,
-  tags,
-  setTitle,
-  setDescription,
-  setTags,
-  handleSubmit,
-  handleClearList,
-}) => {
+const TodoFormNew = ({ todos, handleClearList, takeInput }) => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [tags, setTags] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (title.trim() && description.trim()) {
+      const newTodo = {
+        id: Date.now(),
+        title,
+        description,
+        tags: tags
+          .split(/[, ]+/)
+          .map((tag) => tag.trim())
+          .filter((tag) => tag.length > 0),
+        completed: false,
+      };
+
+      // setTodos((prevTodos) => [...prevTodos, newTodo]);
+      takeInput(newTodo);
+
+      setTitle("");
+      setDescription("");
+      setTags("");
+    }
+  };
+
   // useEffect(() => {
   //   console.log(`Form Rendered`);
   // }, []);
-  
+
   return (
     <div className="w-full p-4">
       <div className="flex flex-row justify-evenly items-baseline">
