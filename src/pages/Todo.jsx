@@ -40,7 +40,7 @@ const Todo = () => {
   };
 
   useEffect(() => {
-    console.log(`App Rendered..`);
+    console.log(`Todo Rendered..`);
   }, []);
 
   return (

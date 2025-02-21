@@ -2,18 +2,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Todo from "./pages/Todo";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import LoginCumRegister from "./pages/LoginCumRegister";
+// import LoginCumRegister from "./pages/LoginCumRegister";
 
 function App() {
   return (
-    <div>
+    <div className="font-mono">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LoginCumRegister />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/todo" element={<Todo />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/login" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>
