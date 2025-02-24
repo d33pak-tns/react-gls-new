@@ -2,8 +2,8 @@
 
 const About = () => {
   return (
-    <div>
-      <p>Temp About Page...</p>
+    <div className="mx-2">
+      <p className="text-md text-gray-800">Temp About Page...</p>
     </div>
   );
 };

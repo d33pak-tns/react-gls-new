@@ -1,10 +1,9 @@
-// userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   users: [],
   currentUser: null,
-  isAuthenticated: false,  // Add isAuthenticated to track login status
+  isAuthenticated: false,
   error: '',
 };
 
@@ -20,16 +19,19 @@ const userSlice = createSlice({
     },
     setUser: (state, action) => {
       state.currentUser = action.payload;
-      state.isAuthenticated = true;  // Set authenticated status
+      state.isAuthenticated = true;  
     },
     clearUser: (state) => {
       state.currentUser = null;
-      state.isAuthenticated = false;  // Reset authentication state
+      state.isAuthenticated = false; 
     },
+    addUser: (state, action) => {
+      state.users.push(action.payload); 
+    }
   },
 });
 
-export const { setUsers, setError, setUser, clearUser } = userSlice.actions;
+export const { setUsers, setError, setUser, clearUser,addUser } = userSlice.actions;
 
 export default userSlice.reducer;
 

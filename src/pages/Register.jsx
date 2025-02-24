@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom"; // Updated for v6
+import { useNavigate } from "react-router-dom";
+import { addUser } from "../redux/userSlice";
 
 const Register = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Updated for v6
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [passVisible, setPassVisible] = useState(false); // For password visibility toggle
+  const [passVisible, setPassVisible] = useState(false);
 
   const handlePasswordVisibility = (e) => {
     e.preventDefault();
@@ -21,15 +22,13 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    // Validate fields
     if (!name || !email || !username || !password) {
       setError("Please fill all the fields");
       return;
     }
 
-    // Create a new user object
     const newUser = {
-      id: Date.now(), // Use current timestamp as unique ID
+      id: Date.now(),
       name,
       username,
       email,
@@ -40,11 +39,9 @@ const Register = () => {
       company: {},
     };
 
-    // Dispatch action to store the user data in the Redux store (optional)
-    dispatch({ type: "users/addUser", payload: newUser });
-
-    // Navigate to Home page after registration
-    navigate("/home"); // Updated for v6
+    // dispatch({ type: "users/addUser", payload: newUser });
+    dispatch(addUser(newUser));
+    navigate("/home"); 
   };
 
   return (

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 // import Navbar from "../components/Navbar";
 
+
 export default function Home() {
   useEffect(() => {
     console.log(`You are in Home-Page...`);
