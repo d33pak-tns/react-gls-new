@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 // import React from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useState } from "react";
 
 const TodoFormNew = ({ todos, handleClearList, takeInput }) => {
@@ -33,9 +33,9 @@ const TodoFormNew = ({ todos, handleClearList, takeInput }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(`Form Rendered`);
-  }, []);
+  // useEffect(() => {
+  //   console.log(`Form Rendered`);
+  // }, []);
 
   return (
     <div className="w-full p-4">

@@ -1,8 +1,11 @@
- import { useState } from "react";
- import { useEffect} from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"; 
-import { setUsers, setError } from "../redux/userSlice"; 
+import { useDispatch, useSelector } from "react-redux";
+// import { setUsers, setError } from "../redux/userSlice";
+// import { fetchUsers } from "../utils/fetchUsers";
+// import { fetchUsersData } from "../api/jsonData";
+import { fetchUsers } from "../api/jsonData";
 import { setUser } from "../redux/userSlice";
 
 const Login = () => {
@@ -11,27 +14,15 @@ const Login = () => {
 
   const { users, error } = useSelector((state) => state.user);
 
-  // Local state for login form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [passVisible, setPassVisible] = useState(false); 
+  const [passVisible, setPassVisible] = useState(false);
 
-  
+
   useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/users");
-        const data = await response.json();
-        console.log("Fetched data:", data);
-        dispatch(setUsers(data)); 
-      } catch (error) {
-        console.error("Error fetching users:", error);
-        dispatch(setError(error.message)); 
-      }
-    }
-
-    fetchUsers();
+    console.log(`Fetching User...`);
+    fetchUsers(dispatch);
   }, [dispatch]);
 
   const handlePasswordVisibility = (e) => {
@@ -39,25 +30,26 @@ const Login = () => {
     setPassVisible((prevState) => !prevState);
   };
 
-const handleLogin = () => {
-  const user = users.find((user) => user.email === email);
+  const handleLogin = () => {
+    console.log(email);
+    const user = users.find((user) => user.email === email);
 
-  if (user) {
-    const userPasswordKey = `VITE_APP_USER_${user.id}_PASSWORD`; 
-    const storedPassword = import.meta.env[userPasswordKey];
+    // console.log(user);
+    if (user) {
+      const userPasswordKey = `VITE_APP_USER_${user.id}_PASSWORD`;
+      const storedPassword = import.meta.env[userPasswordKey];
 
-    if (password === storedPassword) {
-      
-      dispatch(setUser(user));
-      localStorage.setItem("isAuthenticated", "true");
-      navigate("/home");
+      if (password === storedPassword) {
+        dispatch(setUser(user));
+        // localStorage.setItem("isAuthenticated", "true");
+        navigate("/home");
+      } else {
+        setLoginError("Invalid password");
+      }
     } else {
-      setLoginError("Invalid password");
+      setLoginError("User not found, please register");
     }
-  } else {
-    setLoginError("User not found, please register");
-  }
-};
+  };
 
   return (
     <div className="flex flex-row w-full h-screen justify-center">
@@ -66,24 +58,28 @@ const handleLogin = () => {
           -Login-
         </p>
         <form className="flex flex-col" onSubmit={(e) => e.preventDefault()}>
-          <label className="my-2 text-gray-500 font-normal text-md">Email:</label>
+          <label className="my-2 text-gray-500 font-normal text-md">
+            Email:
+          </label>
           <input
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="p-2 border-2 rounded-sm"
+            className="p-2 border-2 rounded-sm outline-none"
             required
           />
 
-          <label className="my-2 text-gray-500 font-normal text-md">Password:</label>
-          <div className="flex flex-row items-baseline">
+          <label className="my-2 text-gray-500 font-normal text-md">
+            Password:
+          </label>
+          <div className="flex flex-row items-baseline border-2 rounded-sm">
             <input
-              type={passVisible ? "text" : "password"} 
+              type={passVisible ? "text" : "password"}
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="p-2 border-2 rounded-sm flex-1"
+              className="p-2 outline-none flex-1"
               required
             />
             <button
@@ -99,13 +95,13 @@ const handleLogin = () => {
           )}
 
           {error && (
-            <p className="m-1 text-red-600 text-sm">{error}</p> // Show error from Redux
+            <p className="m-1 text-red-600 text-sm">{error}</p> 
           )}
 
           <div className="w-full h-fit flex flex-col justify-center items-center">
             <button
               type="submit"
-              onClick={handleLogin} 
+              onClick={handleLogin}
               className="my-2 w-[10rem] h-[2.5rem] text-white bg-green-500 m-1"
             >
               Login

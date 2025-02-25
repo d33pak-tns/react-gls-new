@@ -1,5 +1,6 @@
 // import React from 'react'
-import { useEffect, useState } from "react";
+import {useState } from "react";
+import { useEffect } from "react";
 import TodoFormNew from "../components/TodoFormNew";
 import TodoList from "../components/TodoList";
 
@@ -39,9 +40,9 @@ const Todo = () => {
     setTodos([]);
   };
 
-  useEffect(() => {
-    console.log(`Todo Rendered..`);
-  }, []);
+  // useEffect(() => {
+  //   console.log(`Todo Rendered..`);
+  // }, []);
 
   return (
     <div className="w-full flex flex-col items-center font-mono">

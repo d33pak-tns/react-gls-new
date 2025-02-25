@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import Card from "./Card";
 
 const TodoList = ({ todos, handleToggleComplete, handleDelete }) => {
@@ -8,11 +8,11 @@ const TodoList = ({ todos, handleToggleComplete, handleDelete }) => {
   const anyCompleted = todos.some((todo) => todo.completed);
   const notCompleted = todos.filter((todo) => !todo.completed);
   const completed = todos.filter((todo) => todo.completed);
-  console.log(`notCompleted->`, notCompleted);
-  console.log(`Completed ->`, completed);
-  useEffect(() => {
-    console.log(`List Rendered..`);
-  }, []);
+  // console.log(`notCompleted->`, notCompleted);
+  // console.log(`Completed ->`, completed);
+  // useEffect(() => {
+  //   console.log(`List Rendered..`);
+  // }, []);
 
   return (
     <div className="mt-4 w-full flex flex-col flex-wrap justify-start items-start border-t-2 border-black">

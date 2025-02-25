@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 // import React from 'react'
 
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const Card = ({ todo, handleComplete, handleDelete }) => {
-  useEffect(() => {
-    console.log(`card rendering..`);
-  }, []);
+  // useEffect(() => {
+  //   console.log(`card rendering..`);
+  // }, []);
 
   return (
     <div className="my-2 mx-2 p-2 flex flex-row flex-wrap justify-evenly items-start">

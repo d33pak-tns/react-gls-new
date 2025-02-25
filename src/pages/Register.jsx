@@ -59,7 +59,7 @@ const Register = () => {
             placeholder="Enter your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="p-2 border-2 rounded-sm"
+            className="p-2 border-2 rounded-sm outline-none"
             required
           />
 
@@ -71,7 +71,7 @@ const Register = () => {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="p-2 border-2 rounded-sm"
+            className="p-2 border-2 rounded-sm outline-none"
             required
           />
 
@@ -83,19 +83,19 @@ const Register = () => {
             placeholder="Enter your username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="p-2 border-2 rounded-sm"
+            className="p-2 border-2 rounded-sm outline-none"
             required
           />
 
           <label className=" my-2 text-gray-500 font-normal text-md">
             Password:
           </label>
-          <div className="flex flex-row items-baseline">
+          <div className="flex flex-row items-baseline border-2 rounded-sm">
             <input
               type={passVisible ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="p-2 border-2 rounded-sm flex-1"
+              className="p-2 outline-none flex-1"
               placeholder="Enter your password"
               required
             />

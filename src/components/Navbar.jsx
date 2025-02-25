@@ -1,19 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../redux/userSlice";
-// import { clearUser } from "../redux/userSlice";
+import { clearUser } from "../redux/userSlice";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentUser, isAuthenticated } = useSelector((state) => state.user);
+  console.log(`isAuthenticated->`,isAuthenticated)
 
   const handleLogout = () => {
-    localStorage.setItem("isAuthenticated", "false");
-    localStorage.removeItem("currentUser");
+    // localStorage.setItem("isAuthenticated", "false");
+    // localStorage.removeItem("currentUser");
     dispatch(setUser(null));
-    // dispatch(clearUser());
+    dispatch(clearUser());
     navigate("/");
     window.location.reload();
   };
@@ -46,7 +47,7 @@ const Navbar = () => {
               Welcome, {currentUser.name}
             </p>
           ) : (
-            <p className="text-md text-gray-900 font-semibold">Not logged in</p>
+            <p className="text-md text-gray-900 font-semibold">Status: Logged-out</p>
           )}
         </div>
 
