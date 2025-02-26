@@ -4,23 +4,21 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import userReducer from "./userSlice";
 import logger from "redux-logger";
-// import { applyMiddleware } from "redux";
 
-const persistConfig = {
-  key: "root",
+const userPersistConfig = {
+  key: "user",
   storage,
   whitelist: ["users", "isAuthenticated", "currentUser"],
-  serialize: false,
 };
 
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
+
 const rootReducer = combineReducers({
-  user: userReducer,
+  user: persistedUserReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
@@ -28,5 +26,4 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store);
-
 export { store, persistor };

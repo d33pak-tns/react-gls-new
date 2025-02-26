@@ -25,7 +25,7 @@ const userSlice = createSlice({
       state.isAuthenticated = true;
     },
     clearUser: (state) => {
-      // console.log(`clearUser->`, state); 
+      console.log(`clearUser->`, state);
       state.currentUser = null;
       state.isAuthenticated = false;
     },
